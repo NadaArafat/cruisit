@@ -1,20 +1,46 @@
+import 'package:cruisit/features/authentication/views/sign_up_with_password_view.dart';
 import 'package:cruisit/features/authentication/views/widgets/auth_button.dart';
 import 'package:cruisit/features/authentication/views/widgets/my_text_field.dart';
 import 'package:cruisit/features/authentication/views/widgets/third_party_auth_button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SignUpForm extends StatelessWidget {
+class SignUpForm extends StatefulWidget {
   const SignUpForm({super.key});
 
+  @override
+  State<SignUpForm> createState() => _SignUpFormState();
+}
+
+String? email;
+
+class _SignUpFormState extends State<SignUpForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
       child: Column(
         children: [
-          MyTextField(),
+          MyTextField(
+            hintText: 'Enter e-mail address',
+            icon: 'assets/icons/email.png',
+            onFieldSubmitted: (value) {
+              email = value;
+              setState(() {});
+            },
+            initialValue: email,
+          ),
           SizedBox(height: 30),
-          AuthButton(text: "Continue"),
+          AuthButton(
+            text: "Continue",
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SignUpWithPasswordView(email: email!),
+                ),
+              );
+            },
+          ),
           SizedBox(height: 40),
           Row(
             children: [

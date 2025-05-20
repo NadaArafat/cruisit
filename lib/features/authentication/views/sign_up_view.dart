@@ -1,6 +1,5 @@
-import 'package:cruisit/features/authentication/views/forgot_password_view.dart';
 import 'package:cruisit/features/authentication/views/sign_in_view.dart';
-import 'package:cruisit/features/authentication/views/widgets/sign_in_form.dart';
+import 'package:cruisit/features/authentication/views/widgets/sign_up_form.dart';
 import 'package:cruisit/utils/constants.dart';
 import 'package:cruisit/utils/styles.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +11,7 @@ class SignUpView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: kOffWhite,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 50),
@@ -27,7 +27,7 @@ class SignUpView extends StatelessWidget {
               ),
             ),
             Flexible(child: SizedBox(height: 30)),
-            SignInForm(),
+            SignUpForm(),
             SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

@@ -11,6 +11,7 @@ class ForgotPasswordView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AuthAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 50),
@@ -34,9 +35,12 @@ class ForgotPasswordView extends StatelessWidget {
               ),
             ),
             SizedBox(height: 24),
-            MyTextField(),
+            MyTextField(
+              hintText: "Enter email address",
+              icon: "assets/icons/email.png",
+            ),
             SizedBox(height: 30), //250),
-            AuthButton(text: "Send me Now"),
+            AuthButton(text: "Send me Now", onTap: () {}),
           ],
         ),
       ),

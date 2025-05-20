@@ -1,6 +1,5 @@
 import 'package:cruisit/features/authentication/views/forgot_password_view.dart';
 import 'package:cruisit/features/authentication/views/widgets/auth_app_bar.dart';
-import 'package:cruisit/features/authentication/views/widgets/my_text_field.dart';
 import 'package:cruisit/features/authentication/views/widgets/sign_in_form.dart';
 import 'package:cruisit/utils/constants.dart';
 import 'package:cruisit/utils/styles.dart';
@@ -12,6 +11,7 @@ class SignInView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AuthAppBar(),
       backgroundColor: kOffWhite,
       body: Padding(
