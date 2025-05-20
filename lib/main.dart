@@ -1,4 +1,4 @@
-import 'package:cruisit/features/authentication/views/sign_in_view.dart';
+import 'package:cruisit/features/authentication/views/sign_up_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -13,7 +13,7 @@ class CruisitApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SignInView(),
+      home: SignUpView(),
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         brightness: Brightness.light,

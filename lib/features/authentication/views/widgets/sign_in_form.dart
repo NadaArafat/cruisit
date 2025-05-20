@@ -1,3 +1,4 @@
+import 'package:cruisit/features/authentication/views/widgets/auth_button.dart';
 import 'package:cruisit/features/authentication/views/widgets/third_party_auth_button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,6 +15,8 @@ class SignInForm extends StatelessWidget {
       child: Column(
         children: [
           MyTextField(),
+          SizedBox(height: 30),
+          AuthButton(text: "Continue"),
           SizedBox(height: 40),
           Row(
             children: [
