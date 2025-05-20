@@ -1,3 +1,4 @@
+import 'package:cruisit/features/authentication/views/widgets/auth_app_bar.dart';
 import 'package:cruisit/features/authentication/views/widgets/auth_button.dart';
 import 'package:cruisit/features/authentication/views/widgets/my_text_field.dart';
 import 'package:cruisit/utils/constants.dart';
@@ -10,7 +11,7 @@ class ForgotPasswordView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.transparent),
+      appBar: AuthAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 50),
         child: Column(

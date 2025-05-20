@@ -1,4 +1,5 @@
 import 'package:cruisit/features/authentication/views/forgot_password_view.dart';
+import 'package:cruisit/features/authentication/views/widgets/auth_app_bar.dart';
 import 'package:cruisit/features/authentication/views/widgets/my_text_field.dart';
 import 'package:cruisit/features/authentication/views/widgets/sign_in_form.dart';
 import 'package:cruisit/utils/constants.dart';
@@ -11,13 +12,14 @@ class SignInView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AuthAppBar(),
       backgroundColor: kOffWhite,
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 50),
+        padding: const EdgeInsets.symmetric(horizontal: 28),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Flexible(child: SizedBox(height: 100)),
+            Flexible(child: SizedBox(height: 70)),
             Text(
               'Sign In',
               style: Styles.subTitleMedium.copyWith(
