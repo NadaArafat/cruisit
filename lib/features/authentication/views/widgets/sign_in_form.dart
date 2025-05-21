@@ -13,11 +13,13 @@ class SignInForm extends StatefulWidget {
 }
 
 String? email;
+final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
 class _SignInFormState extends State<SignInForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: _formKey,
       child: Column(
         children: [
           MyTextField(
@@ -27,18 +29,32 @@ class _SignInFormState extends State<SignInForm> {
               email = value;
               setState(() {});
             },
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter your email address';
+              }
+              if (!RegExp(
+                r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+              ).hasMatch(value)) {
+                return 'Please enter a valid email address, ex: example@gmail.com';
+              }
+              return null;
+            },
             initialValue: email,
           ),
           SizedBox(height: 30),
           AuthButton(
             text: "Continue",
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => SignInWithPasswordView(email: email!),
-                ),
-              );
+              if (_formKey.currentState!.validate()) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SignInWithPasswordView(email: email!),
+                  ),
+                );
+                FocusScope.of(context).unfocus();
+              }
             },
           ),
           SizedBox(height: 40),

@@ -10,6 +10,7 @@ class ForgotPasswordView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AuthAppBar(),
@@ -35,12 +36,43 @@ class ForgotPasswordView extends StatelessWidget {
               ),
             ),
             SizedBox(height: 24),
-            MyTextField(
-              hintText: "Enter email address",
-              icon: "assets/icons/email.png",
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  MyTextField(
+                    hintText: "Enter email address",
+                    icon: "assets/icons/email.png",
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'this field is required';
+                      }
+                      if (!RegExp(
+                        r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+                      ).hasMatch(value)) {
+                        return 'Please enter a valid email address,\n ex: example@gmail.com';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: 30), //250),
+                  AuthButton(
+                    text: "Send me Now",
+                    onTap: () {
+                      if (!_formKey.currentState!.validate()) {
+                        return;
+                      }
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text("a mail has been sent to your email"),
+                        ),
+                      );
+                      FocusScope.of(context).unfocus();
+                    },
+                  ),
+                ],
+              ),
             ),
-            SizedBox(height: 30), //250),
-            AuthButton(text: "Send me Now", onTap: () {}),
           ],
         ),
       ),

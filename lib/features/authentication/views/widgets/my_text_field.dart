@@ -1,3 +1,4 @@
+import 'package:cruisit/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class MyTextField extends StatelessWidget {
@@ -9,6 +10,7 @@ class MyTextField extends StatelessWidget {
     this.initialValue,
     this.obscureText = false,
     this.suffixIconButton,
+    this.validator,
   });
 
   final String hintText;
@@ -17,14 +19,17 @@ class MyTextField extends StatelessWidget {
   final String? initialValue;
   final bool obscureText;
   final IconButton? suffixIconButton;
+  final FormFieldValidator<String>? validator;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: validator,
       onChanged: onFieldSubmitted,
       initialValue: initialValue,
       obscureText: obscureText,
       decoration: InputDecoration(
+        errorStyle: TextStyle(color: kThirdColor, fontSize: 14),
         prefixIcon: Padding(
           padding: const EdgeInsets.only(left: 12),
           child: Image.asset(icon, color: Colors.grey),
@@ -37,6 +42,14 @@ class MyTextField extends StatelessWidget {
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.grey.shade200, width: 2),
+          borderRadius: BorderRadius.circular(14),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: kAuthPrimaryColor, width: 2),
+          borderRadius: BorderRadius.circular(14),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: kAuthPrimaryColor, width: 2),
           borderRadius: BorderRadius.circular(14),
         ),
         suffixIcon: suffixIconButton,

@@ -18,15 +18,37 @@ class _SignUpWithPasswordFormState extends State<SignUpWithPasswordForm> {
   bool obscureText1 = true;
   bool obscureText2 = true;
 
+  String? password;
+  String? email;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  bool showRequiredError = false;
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: _formKey,
       child: Column(
         children: [
           MyTextField(
             hintText: "Enter e-mail address",
             icon: "assets/icons/email.png",
             initialValue: widget.email,
+            onFieldSubmitted: (value) {
+              setState(() {
+                email = value;
+              });
+            },
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'this field is required';
+              }
+              if (!RegExp(
+                r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+              ).hasMatch(value)) {
+                return 'Please enter a valid email address, ex: example@gmail.com';
+              }
+              return null;
+            },
           ),
           SizedBox(height: 20),
           MyTextField(
@@ -41,6 +63,20 @@ class _SignUpWithPasswordFormState extends State<SignUpWithPasswordForm> {
                 });
               },
             ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'this field is required';
+              }
+              if (value.length < 8) {
+                return 'Password must be at least 8 characters';
+              }
+              return null;
+            },
+            onFieldSubmitted: (value) {
+              setState(() {
+                password = value;
+              });
+            },
           ),
           SizedBox(height: 20),
           MyTextField(
@@ -55,6 +91,15 @@ class _SignUpWithPasswordFormState extends State<SignUpWithPasswordForm> {
                 });
               },
             ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'this field is required';
+              }
+              if (value != password) {
+                return 'Passwords do not match';
+              }
+              return null;
+            },
           ),
           SizedBox(height: 10),
           Row(
@@ -86,9 +131,41 @@ class _SignUpWithPasswordFormState extends State<SignUpWithPasswordForm> {
               ),
             ],
           ),
-          SizedBox(height: 10), //250),
+          if (showRequiredError)
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 16.0),
+                  child: Text(
+                    "this field is required",
+                    style: TextStyle(color: kThirdColor, fontSize: 14),
+                  ),
+                ),
+              ],
+            ),
+          SizedBox(height: 10),
+          AuthButton(
+            text: "Sign Up",
+            onTap: () {
+              if (!_formKey.currentState!.validate()) {
+                return;
+              }
 
-          AuthButton(text: "Sign Up", onTap: () {}),
+              if (!checkValue) {
+                setState(() {
+                  showRequiredError = true;
+                });
+                return;
+              }
+              setState(() {
+                showRequiredError = false;
+              });
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text("Sign Up completed successfully")),
+              );
+              FocusScope.of(context).unfocus();
+            },
+          ),
         ],
       ),
     );
