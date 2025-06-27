@@ -265,30 +265,36 @@ class CategoriesList extends StatelessWidget {
         //     return const SizedBox();
         //   },
         // ),
-        // BlocBuilder<FetchContinentsCubit, FetchContinentsState>(
-        //   builder: (context, state) {
-        //     if (state is FetchContinentsSuccess) {
-        //       return Column(
-        //         children: [
-        //           buildCategoryHeader(
-        //             title: continents,
-        //             sectionContext: context,
-        //           ),
-        //           const SizedBox(height: 12),
-        //           Padding(
-        //             padding: const EdgeInsets.only(left: 16.0),
-        //             child: HorizontalCategoryList(
-        //               categoryItem: (item) => ContinentsItem(continent: item),
-        //               items: state.continents,
-        //             ),
-        //           ),
-        //           const SizedBox(height: 24),
-        //         ],
-        //       );
-        //     }
-        //     return const SizedBox();
-        //   },
-        // ),
+        BlocBuilder<FetchContinentsCubit, FetchContinentsState>(
+          builder: (context, state) {
+            if (state is FetchContinentsSuccess) {
+              return Column(
+                children: [
+                  buildCategoryHeader(
+                    title: continents,
+                    onSeeAllPressed: () {
+                      navigateToSeeAllView(
+                        context,
+                        destinations: state.continents,
+                        title: continents,
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 12),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16.0),
+                    child: HorizontalCategoryList(
+                      categoryItem: (item) => ContinentsItem(continent: item),
+                      items: state.continents,
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                ],
+              );
+            }
+            return const SizedBox();
+          },
+        ),
         // BlocBuilder<FetchAnimalsCubit, FetchAnimalsState>(
         //   builder: (context, state) {
         //     if (state is FetchAnimalsSuccess) {

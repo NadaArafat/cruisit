@@ -58,7 +58,7 @@ class _FeaturedListState extends State<FeaturedList> {
         height: 400,
         child: PageView.builder(
           controller: _pageController, // Use the page controller
-          itemCount: 4, // Number of featured items
+          itemCount: widget.featuredItems.length, // Number of featured items
           padEnds: false, // No padding at ends
           clipBehavior: Clip.none, // Do not clip overflowing children
           physics: const BouncingScrollPhysics(), // Bouncing scroll physics
