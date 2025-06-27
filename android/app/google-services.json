@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "382143832776",
+    "project_id": "cruisit-f6718",
+    "storage_bucket": "cruisit-f6718.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:382143832776:android:fc50d0a15dbf38c27b7bfd",
+        "android_client_info": {
+          "package_name": "com.company.cruisit"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_waDB_BQj7x_P6Cb94lfXy3AcLPCgRL4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
